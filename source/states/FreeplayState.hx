@@ -321,7 +321,7 @@ class FreeplayState extends MusicBeatState
 		songs.push(songData);
 		var songDiffs:Array<Int> = [];
 		if(FileSystem.isDirectory(SUtil.getPath() + 'assets/songs/${songData.chartName.toLowerCase()}') ){
-			for (file in FileSystem.readDirectory('assets/songs/${songData.chartName.toLowerCase()}'))
+			for (file in FileSystem.readDirectory(SUtil.getPath() + 'assets/songs/${songData.chartName.toLowerCase()}'))
 			{
 				if(file.endsWith(".json") && !FileSystem.isDirectory(file)){
 					var difficultyName = file.replace(".json","").replace(songData.chartName.toLowerCase(),"");
