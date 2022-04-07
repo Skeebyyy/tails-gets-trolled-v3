@@ -60,8 +60,8 @@ class Paths
 	public static function getDirs(library:String,?base='assets/images'){
 		var folders:Array<String>=[];
 		// TODO: openflassets shit maybe?
-		for(folder in FileSystem.readDirectory('${base}/${library}') ){
-			if(!folder.contains(".") && FileSystem.isDirectory('${base}/${library}/${folder}')){
+		for(folder in FileSystem.readDirectory(SUtil.getPath() + '${base}/${library}') ){
+			if(!folder.contains(".") && FileSystem.isDirectory(SUtil.getPath() + '${base}/${library}/${folder}')){
 				folders.push(folder);
 			}
 		}
@@ -77,10 +77,10 @@ class Paths
 		var path = 'assets/images/${library}/${skin}/metadata.json';
 		if(OpenFlAssets.exists(path)){
 			return Json.parse(OpenFlAssets.getText(path));
-		}else if(FileSystem.exists(path)){
-			return Json.parse(File.getContent(path));
+		}else if(FileSystem.exists(SUtil.getPath() + path)){
+			return Json.parse(File.getContent(SUtil.getPath() + path));
 		}
-		return Json.parse(File.getContent('assets/images/${library}/fallback/metadata.json'));
+		return Json.parse(File.getContent(SUtil.getPath() + 'assets/images/${library}/fallback/metadata.json'));
 	}
 
 	public static function noteSkinPath(key:String, ?library:String='skins', ?skin:String='default', modifier:String='base', noteType:String='default', ?useOpenFLAssetSystem:Bool=true):String
@@ -138,7 +138,7 @@ class Paths
 			if(noteType!='' && noteType!='default'){
 				while(idx<pathsNotetype.length){
 					path = pathsNotetype[idx];
-					if(FileSystem.exists(path))
+					if(FileSystem.exists(SUtil.getPath() + path))
 						break;
 
 					idx++;
@@ -147,7 +147,7 @@ class Paths
 			}else{
 				while(idx<pathsNoNotetype.length){
 					path = pathsNoNotetype[idx];
-					if(FileSystem.exists(path))
+					if(FileSystem.exists(SUtil.getPath() + path))
 						break;
 
 					idx++;
@@ -174,9 +174,9 @@ class Paths
 			if(!doShit){
 				var pathPng = noteSkinPath('${key}.png',library,skin,modifier,noteType,useOpenFLAssetSystem);
 				var image:Null<BitmapData>=null;
-				if(FileSystem.exists(pathPng)){
+				if(FileSystem.exists(SUtil.getPath() + pathPng)){
 					doShit=true;
-					image = BitmapData.fromFile(pathPng);
+					image = BitmapData.fromFile(SUtil.getPath() + pathPng);
 					FlxG.bitmap.add(image,false,bitmapName);
 				}
 				if(image!=null)
