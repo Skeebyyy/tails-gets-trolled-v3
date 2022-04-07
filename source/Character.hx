@@ -119,7 +119,7 @@ class Character extends FlxSprite
 	}
 
 	public static function getJSON(charName:String,player:Bool=false):CharJson{
-		var pathBase = 'assets/characters/data/';
+		var pathBase = SUtil.getPath() + 'assets/characters/data/';
 		var daCharPath = pathBase + charName + ".json";
 		var playerPath = pathBase + charName + "-player.json";
 		if(player && FileSystem.exists(playerPath))daCharPath=playerPath;
@@ -183,8 +183,8 @@ class Character extends FlxSprite
 	}
 	public function setCharData(){
 		if(charData!=null){
-			var chars = "assets/characters/images/";
-			var pathBase = "assets/characters/data/";
+			var chars = SUtil.getPath() + "assets/characters/images/";
+			var pathBase = SUtil.getPath() + "assets/characters/data/";
 
 			var playerPath = pathBase + curCharacter + "-player.json";
 
@@ -205,7 +205,7 @@ class Character extends FlxSprite
 
 			animOffsets.clear();
 			animation.destroyAnimations();
-			var offsetPath = "assets/characters/images/"+curCharacter+"Offsets.txt";
+			var offsetPath = "SUtil.getPath() + assets/characters/images/"+curCharacter+"Offsets.txt";
 			var defaultOffsets:Map<String,Array<Float>>=[];
 			if(FileSystem.exists(offsetPath)){
 				var offsets = CoolUtil.coolTextFile2(File.getContent(offsetPath));
@@ -376,7 +376,7 @@ class Character extends FlxSprite
 		if(Cache.offsetData[curCharacter]!=null){
 			offsets = CoolUtil.coolTextFile2(Cache.offsetData[curCharacter]);
 		}else{
-			var data = File.getContent("assets/shared/images/characters/"+curCharacter+"Offsets.txt");
+			var data = File.getContent(SUtil.getPath() + ("assets/shared/images/characters/"+curCharacter+"Offsets.txt");
 			offsets = CoolUtil.coolTextFile2(data);
 			Cache.offsetData[curCharacter] = data;
 		}
@@ -394,7 +394,7 @@ class Character extends FlxSprite
 			if(Cache.offsetData[curCharacter]!=null){
 				anims = CoolUtil.coolTextFile2(Cache.animData[curCharacter]);
 			}else{
-				var data = File.getContent("assets/shared/images/characters/"+curCharacter+"Anims.txt");
+				var data = File.getContent(SUtil.getPath() + ("assets/shared/images/characters/"+curCharacter+"Anims.txt");
 				anims = CoolUtil.coolTextFile2(data);
 				Cache.animData[curCharacter] = data;
 			}
