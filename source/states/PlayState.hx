@@ -1121,13 +1121,12 @@ class PlayState extends MusicBeatState
 					trace(EngineData.cutscenes.get(curSong).toLowerCase());
 					trace(curSong.toLowerCase());
 					if(EngineData.cutscenes.get(curSong.toLowerCase())!=null){
-						var video = new MP4Handler();
+                                                inCutscene=true;
+						var video = new FlxVideo(SUtil.getPath() + Paths.video(EngineData.cutscenes.get(curSong.toLowerCase())));
 						video.finishCallback = function()
 						{
 							startCountdown();
 						}
-						inCutscene=true;
-						video.playVideo(Paths.video(EngineData.cutscenes.get(curSong.toLowerCase())));
 					}else
 						startCountdown();
 
