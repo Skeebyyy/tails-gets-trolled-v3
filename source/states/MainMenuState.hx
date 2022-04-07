@@ -17,7 +17,6 @@ import flixel.tweens.FlxTween;
 import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.util.FlxColor;
-import io.newgrounds.NG;
 import lime.app.Application;
 import haxe.Exception;
 using StringTools;
