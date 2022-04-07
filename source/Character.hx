@@ -169,7 +169,7 @@ class Character extends FlxSprite
 			default:
 			{
 				curCharacter=newChar;
-				var pathBase = 'assets/characters/data/';
+				var pathBase = SUtil.getPath() + 'assets/characters/data/';
 				var daCharPath = pathBase + curCharacter + ".json";
 				var playerPath = pathBase + curCharacter + "-player.json";
 				if(isPlayer && FileSystem.exists(playerPath))daCharPath=playerPath;
