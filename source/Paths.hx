@@ -300,7 +300,7 @@ class Paths
 	}
 
 	inline static public function lua(script:String,?library:String){
-			return getPath('data/$script.lua',TEXT,library);
+	        return getPath('data/$script.lua',TEXT,library);
 	}
 
 	inline static public function modchart(song:String,?library:String){
@@ -319,7 +319,7 @@ class Paths
 
 	inline static public function video(key:String, ?library:String)
 	{
-		return getPath('videos/$key.mp4', BINARY, library);
+		return getPath('videos/$key.html', BINARY, library);
 	}
 
 
