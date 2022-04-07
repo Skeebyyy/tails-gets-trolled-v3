@@ -100,13 +100,12 @@ class StoryMenuState extends MusicBeatState
 	function startShit(icon:StoryIcon){
 		PlayState.setStoryWeek(icon.weekData,1);
 		if(icon.cutscene!=''){
-			var video = new MP4Handler();
+                        isCutscene=true;
+			var video = new FlxVideo(SUtil.getPath() + Paths.video(icon.cutscene));
 			video.finishCallback = function()
 			{
 				LoadingState.loadAndSwitchState(new PlayState());
 			}
-			isCutscene=true;
-			video.playVideo(Paths.video(icon.cutscene));
 
 		}else{
 			LoadingState.loadAndSwitchState(new PlayState());
