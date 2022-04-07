@@ -47,7 +47,7 @@ class InitState extends FlxUIState {
 
   public static function getCharacters(){
     EngineData.characters=[];
-    for(file in FileSystem.readDirectory('assets/characters/data') ){
+    for(file in FileSystem.readDirectory(SUtil.getPath() + 'assets/characters/data') ){
       if(file.endsWith(".json")){
         var name = file.replace(".json","");
         if(!name.endsWith("-player")){
@@ -72,8 +72,8 @@ class InitState extends FlxUIState {
 
     PlayerSettings.init();
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
-		Highscore.load();
+    FlxG.save.bind('funkin', 'ninjamuffin99');
+    Highscore.load();
 
     FlxG.save.data.volume = FlxG.save.data.volume==null?1:FlxG.save.data.volume;
     
@@ -130,19 +130,17 @@ class InitState extends FlxUIState {
     super.create();
 
     #if desktop
-		DiscordClient.initialize();
+    DiscordClient.initialize();
 
-		Application.current.onExit.add (function (exitCode) {
-			DiscordClient.shutdown();
-		 });
-		#end
+    Application.current.onExit.add (function (exitCode) {
+            DiscordClient.shutdown();
+    });
+    #end
 
 
     var canCache=false;
-    #if sys
-      #if cpp // IDK IF YOU CAN DO "#IF SYS AND CPP" OR THIS'LL WORK I THINK
-        canCache=true;
-      #end
+    #if !android
+    canCache=true;
     #end
     if(canCache){
       if(!currentOptions.cacheCharacters && !currentOptions.cacheSongs && !currentOptions.cacheSounds  && !currentOptions.cachePreload)
@@ -169,7 +167,4 @@ class InitState extends FlxUIState {
     FlxG.switchState(nextState);
     #end
   }
-
-
-
 }
