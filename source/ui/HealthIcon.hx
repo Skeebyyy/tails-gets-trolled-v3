@@ -20,7 +20,7 @@ class HealthIcon extends FlxSprite
 	public var daSize:Float = 150;
 
 	public function changeCharacter(char:String){
-		var path = 'assets/characters/icons/${char}';
+		var path = SUtil.getPath() + 'assets/characters/icons/${char}';
 		var charArray:Array<Int> = [];
 		var image:Null<FlxGraphicAsset>=null;
 		if(FlxG.bitmap.get(path)!=null){
@@ -29,7 +29,7 @@ class HealthIcon extends FlxSprite
 			image = FlxG.bitmap.add(BitmapData.fromFile(path + ".png"),false,path);
 		}else if(FileSystem.exists("assets/characters/icons/face.png")){
 			FlxG.log.warn('${char} is not a valid icon name. Using fallback');
-			image = FlxG.bitmap.add(BitmapData.fromFile("assets/characters/icons/face.png"),false,path);
+			image = FlxG.bitmap.add(BitmapData.fromFile(SUtil.getPath() + "assets/characters/icons/face.png"),false,path);
 		}else{
 			FlxG.log.error("Can't find fallback icon and " + char + " is not a valid icon name. Expect a crash lol");
 			trace("Can't find fallback icon and " + char + " is not a valid icon name. Expect a crash lol");
