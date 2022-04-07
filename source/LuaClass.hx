@@ -480,7 +480,7 @@ class LuaSprite extends LuaClass {
 
     var spriteName = Lua.tostring(state,-1);
     var sprite = PlayState.currentPState.luaSprites[spriteName];
-    var fullPath = "assets/songs/" + PlayState.SONG.song.toLowerCase()+"/"+path+".png";
+    var fullPath = SUtil.getPath() + "assets/songs/" + PlayState.SONG.song.toLowerCase()+"/"+path+".png";
     var data:BitmapData;
     if(FileSystem.exists(fullPath) && !FileSystem.isDirectory(fullPath)){
       try{
@@ -503,7 +503,7 @@ class LuaSprite extends LuaClass {
     var spriteName = Lua.tostring(state,-1);
     var sprite = PlayState.currentPState.luaSprites[spriteName];
 
-    var fullPath = "assets/songs/" + PlayState.SONG.song.toLowerCase()+"/"+path;
+    var fullPath = SUtil.getPath() + "assets/songs/" + PlayState.SONG.song.toLowerCase()+"/"+path;
     var fullPathXML = fullPath + ".xml";
     var fullPathPNG = fullPath + ".png";
     var bitmapData:BitmapData;
